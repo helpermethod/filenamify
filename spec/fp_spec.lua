@@ -7,7 +7,7 @@ describe('fp', function()
   end
 
   describe('concat', function()
-    it('should create a new table consisting of the elements of the first table followed by the elements of the second table', function()
+    it('should return a new table consisting of the elements of the first table followed by the elements of the second table', function()
       assert.is_same({1, 2, 3}, fp.concat({1, 2}, {3}))
     end)
   end)
@@ -25,7 +25,7 @@ describe('fp', function()
   end)
 
   describe('any_pass', function()
-    it('should', function()
+    it('should return a new predicate that returns true for a given argument if at least one of the provided predicates is satisfied by the argument', function()
       assert.is_true(fp.any_pass(function(x) return type(x) == 'string' end, function(x) return type(x) == 'number' end)(2))
     end)
   end)
