@@ -30,7 +30,8 @@ function fp.any_pass(predicate, ...)
   local rest = {...}
 
   return function(argument)
-    if not predicate then return false end
+    if #rest == 0 then return predicate(argument) end
+
     return predicate(argument) or fp.any_pass(table.unpack(rest))(argument)
   end
 end

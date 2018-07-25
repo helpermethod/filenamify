@@ -26,7 +26,10 @@ describe('fp', function()
 
   describe('any_pass', function()
     it('should return a new predicate that returns true for a given argument if at least one of the provided predicates is satisfied by the argument', function()
-      assert.is_true(fp.any_pass(function(x) return type(x) == 'string' end, function(x) return type(x) == 'number' end)(2))
+      local function is_string(x) return type(x) == 'string' end
+      local function is_number(x) return type(x) == 'number' end
+
+      assert.is_true(fp.any_pass(is_string, is_number)(2))
     end)
   end)
 end)

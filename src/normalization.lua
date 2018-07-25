@@ -6,26 +6,32 @@ local normalization = {}
 local uppercase_percent_encoding = fp.partial(str.replace, '%%%x%x', string.upper)
 
 local function is_alpha(num)
+  print('is_a', num)
   return num >= 65 and num <= 90 or (num >= 97 and num <= 122)
 end
 
 local function is_digit(num)
+  print('is_d', num)
   return num >= 48 and num <= 122
 end
 
 local function is_hypen(num)
+  print('is_h')
   return num == 45
 end
 
 local function is_period(num)
+  print('is_p')
   return num == 46
 end
 
 local function is_underscore(num)
+  print('is_u', num)
   return num == 95
 end
 
 local function is_tilde(num)
+  print('is_t', num)
   return num == 126
 end
 
@@ -39,6 +45,7 @@ local is_unreserved = fp.any_pass(
 )
 local decode_unreserved_chars = fp.partial(str.replace, '%%(%x%x)', function(hex)
   local num = tonumber(hex, 16)
+  print(hex, num)
 
   return is_unreserved(num) and string.char(num) or '%' .. hex
 end)
