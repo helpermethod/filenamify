@@ -48,6 +48,6 @@ normalization.normalize_percent_encoding = fp.pipe(
   uppercase_percent_encoding,
   decode_unreserved_chars
 )
-normalization.normalize_host = fp.pipe(string.lower)
+normalization.normalize_host = string.lower
 
 return normalization
