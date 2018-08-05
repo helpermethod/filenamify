@@ -1,3 +1,4 @@
+rockspec_format = '3.0'
 package = 'filenamify'
 version = 'scm-1'
 source = {
@@ -8,11 +9,8 @@ description = {
    license = '*** please specify a license ***'
 }
 dependencies = {}
-build = {
-   type = 'builtin',
-   modules = {
-      filenamify = 'src/filenamify.lua',
-      fp = 'src/fp.lua',
-      humanize = 'src/humanize.lua'
-   }
+test_dependencies = {
+}
+test = {
+  type = 'busted'
 }
