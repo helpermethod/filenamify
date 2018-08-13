@@ -1,9 +1,12 @@
 local fp = require('fp')
-local str = require('str')
 
 local normalization = {}
 
-local uppercase_percent_encoding = fp.partial(str.replace, '%%%x%x', string.upper)
+local function replace(pattern, replacement, s)
+  return s:gsub(pattern, replacement)
+end
+
+local uppercase_percent_encoding = fp.partial(replace, '%%%x%x', string.upper)
 
 local function is_alpha(num)
   return num >= 65 and num <= 90 or (num >= 97 and num <= 122)
@@ -38,7 +41,7 @@ local is_unreserved = fp.any_pass(
   is_tilde
 )
 
-local decode_unreserved_chars = fp.partial(str.replace, '%%(%x%x)', function(hex)
+local decode_unreserved_chars = fp.partial(replace, '%%(%x%x)', function(hex)
   local num = tonumber(hex, 16)
 
   return is_unreserved(num) and string.char(num) or '%' .. hex

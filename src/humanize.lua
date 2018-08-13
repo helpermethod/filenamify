@@ -1,10 +1,13 @@
 local fp = require('fp')
-local str = require('str')
 local normalize = require('normalize')
 
+local function strip(pattern, s)
+  return s:gsub(pattern, '')
+end
+
 return fp.pipe(
-  fp.partial(str.strip, '^https?:'),
-  fp.partial(str.strip, '^//'),
-  fp.partial(str.strip, '^[^@/]+@'),
+  fp.partial(strip, '^https?:'),
+  fp.partial(strip, '^//'),
+  fp.partial(strip, '^[^@/]+@'),
   normalize
 )

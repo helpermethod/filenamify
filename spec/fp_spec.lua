@@ -1,5 +1,4 @@
 local fp = require('fp')
-local replace = require('str')
 
 describe('fp', function()
   local function add(a, b)
