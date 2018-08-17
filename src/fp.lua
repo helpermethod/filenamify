@@ -1,6 +1,6 @@
 local fp = {}
 
-function fp.concat(first_table, second_table) 
+function fp.concat(first_table, second_table)
   local copy = {table.unpack(first_table)}
 
   for _, v in ipairs(second_table) do
@@ -19,7 +19,7 @@ function fp.pipe(fn, ...)
 end
 
 function fp.partial(fn, ...)
-  local arguments = {...} 
+  local arguments = {...}
 
   return function(...)
     return fn(table.unpack(fp.concat(arguments, {...})))
