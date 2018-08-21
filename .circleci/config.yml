@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: helpermethod/docker-luarocks
+    steps:    
+      - checkout
+      - run: luarocks test
