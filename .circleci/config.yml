@@ -5,4 +5,4 @@ jobs:
       - image: helpermethod/docker-luarocks:0.1.0
     steps:    
       - checkout
-      - run: luarocks test --coverage
+      - run: luarocks test -- --coverage
