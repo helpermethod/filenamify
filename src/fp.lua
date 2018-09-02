@@ -1,9 +1,9 @@
 local fp = {}
 
-function fp.concat(first_table, second_table)
-  local copy = {table.unpack(first_table)}
+function fp.concat(first_tbl, second_tbl)
+  local copy = {table.unpack(first_tbl)}
 
-  for _, v in ipairs(second_table) do
+  for _, v in ipairs(second_tbl) do
     table.insert(copy, v)
   end
 

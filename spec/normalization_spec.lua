@@ -18,4 +18,9 @@ describe('normalization', function()
       end)
     end
   end)
+  describe('sort_query_params', function()
+    it('should sort the query parameters', function()
+      -- TODO
+    end)
+  end)
 end)

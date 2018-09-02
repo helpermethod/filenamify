@@ -3,7 +3,7 @@ local parse_url = require('parse_url')
 describe('parse_url', function()
   for i, pair in ipairs({
     { 'www.example.com', { 'www.example.com', '', ''}},
-    { 'www.example.com/foo', { 'www.example.com', '/foo', ''}}
+    { 'www.example.com/display', { 'www.example.com', '/display', ''}}
   }) do
     local passed_in, expected = table.unpack(pair)
 
