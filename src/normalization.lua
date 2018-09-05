@@ -53,18 +53,22 @@ normalization.normalize_percent_encoding = fp.pipe(
 )
 normalization.normalize_host = string.lower
 
-local function join(tbl)
-  return table.concat(tbl, '')
+local function split_on_ampersand(str)
+  local params = {}
+
+  for w in str:gmatch('[^&]+') do
+    table.insert(params, w)
+  end
+
+  return params
 end
 
-local function split(str)
-  local iter = str.gmatch(str, '[^&]+')
-end
-
-normalization.sort_query_params = fp.pipe(
-  string.split,
-  table.sort,
-  join
+local sort_query_params = fp.pipe(
+  split_on_ampersand,
+  fp.partial(fp.sort, function(a, b) return a < b end),
+  fp.partial(fp.join, '&')
 )
+
+normalization.normalize_query = sort_query_params
 
 return normalization

@@ -5,6 +5,16 @@ describe('fp', function()
     return a + b
   end
 
+  describe('split', function()
+    it('should split a string into a table of strings')
+  end)
+
+  describe('join', function()
+    it('should concatenate all elements into a single string', function()
+      assert.is_equal('1,2,3', fp.join(',', {1, 2, 3}))
+    end)
+  end)
+
   describe('concat', function()
     it('should return a new table consisting of the elements of the first table followed by the elements of the second table', function()
       assert.is_same({1, 2, 3}, fp.concat({1, 2}, {3}))

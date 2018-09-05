@@ -1,9 +1,13 @@
 local fp = {}
 
-function fp.concat(first_tbl, second_tbl)
-  local copy = {table.unpack(first_tbl)}
+function fp.join(separator, tbl)
+  return table.concat(tbl, separator)
+end
 
-  for _, v in ipairs(second_tbl) do
+function fp.concat(tbl1, tbl2)
+  local copy = {table.unpack(tbl1)}
+
+  for _, v in ipairs(tbl2) do
     table.insert(copy, v)
   end
 
@@ -34,6 +38,14 @@ function fp.any_pass(predicate, ...)
 
     return predicate(argument) or fp.any_pass(table.unpack(rest))(argument)
   end
+end
+
+function fp.sort(comparator, tbl)
+  local copy = {table.unpack(tbl)}
+
+  table.sort(copy, comparator)
+
+  return copy
 end
 
 return fp

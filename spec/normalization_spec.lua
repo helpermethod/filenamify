@@ -20,7 +20,7 @@ describe('normalization', function()
   end)
   describe('sort_query_params', function()
     it('should sort the query parameters', function()
-      -- TODO
+      assert.is_same('article=fred&lang=en', normalization.normalize_query('lang=en&article=fred'))
     end)
   end)
 end)

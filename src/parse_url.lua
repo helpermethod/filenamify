@@ -1,3 +1,3 @@
 return function(url)
-  return url:match('([^/?#]*)(/?[^?#]*)(%??[^#]*)')
+  return url:match('([^/?#]*)(/?[^?#]*)%??([^#]*)')
 end
