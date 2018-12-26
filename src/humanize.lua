@@ -1,13 +1,13 @@
-local fp = require('fp')
+local lambda = require('lamda')
 local normalize = require('normalize')
 
 local function strip(pattern, s)
   return s:gsub(pattern, '')
 end
 
-return fp.pipe(
-  fp.partial(strip, '^https?:'),
-  fp.partial(strip, '^//'),
-  fp.partial(strip, '^[^@/]+@'),
+return lamda.pipe(
+  lamda.partial(strip, '^https?:'),
+  lamda.partial(strip, '^//'),
+  lamda.partial(strip, '^[^@/]+@'),
   normalize
 )

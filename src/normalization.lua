@@ -1,4 +1,4 @@
-local fp = require('fp')
+local lamda = require('lamda')
 
 local normalization = {}
 
@@ -6,7 +6,7 @@ local function replace(pattern, replacement, s)
   return s:gsub(pattern, replacement)
 end
 
-local uppercase_percent_encoding = fp.partial(replace, '%%%x%x', string.upper)
+local uppercase_percent_encoding = lamda.partial(replace, '%%%x%x', string.upper)
 
 local function is_alpha(num)
   return num >= 65 and num <= 90 or (num >= 97 and num <= 122)
@@ -32,7 +32,7 @@ local function is_tilde(num)
   return num == 126
 end
 
-local is_unreserved = fp.any_pass(
+local is_unreserved = lamda.any_pass(
   is_alpha,
   is_digit,
   is_hyphen,
@@ -41,13 +41,13 @@ local is_unreserved = fp.any_pass(
   is_tilde
 )
 
-local decode_unreserved_chars = fp.partial(replace, '%%(%x%x)', function(hex)
+local decode_unreserved_chars = lamda.partial(replace, '%%(%x%x)', function(hex)
   local num = tonumber(hex, 16)
 
   return is_unreserved(num) and string.char(num) or '%' .. hex
 end)
 
-normalization.normalize_percent_encoding = fp.pipe(
+normalization.normalize_percent_encoding = lamda.pipe(
   uppercase_percent_encoding,
   decode_unreserved_chars
 )
@@ -63,10 +63,10 @@ local function split_on_ampersand(str)
   return params
 end
 
-local sort_query_params = fp.pipe(
+local sort_query_params = lamda.pipe(
   split_on_ampersand,
-  fp.partial(fp.sort, function(a, b) return a < b end),
-  fp.partial(fp.join, '&')
+  lamda.partial(lamda.sort, function(a, b) return a < b end),
+  lamda.partial(lamda.join, '&')
 )
 
 normalization.normalize_query = sort_query_params

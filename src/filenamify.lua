@@ -1,4 +1,4 @@
-local fp = require('fp')
+local lamda = require('lamda')
 local humanize = require('humanize')
 
 local function replace_reserved_chars(str)
@@ -6,4 +6,4 @@ local function replace_reserved_chars(str)
   return str:gsub('[<>:"/\\|%?*]+', '!')
 end
 
-return fp.pipe(humanize, replace_reserved_chars)
+return lamda.pipe(humanize, replace_reserved_chars)
